@@ -1,0 +1,1 @@
+# AI-based-Crop-Recommendation-for-Farmers
