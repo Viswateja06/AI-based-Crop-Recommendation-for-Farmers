@@ -1,11 +1,16 @@
 import re
+import os
+import requests
+from dotenv import load_dotenv
+import logging
 
-def detect_intent(query: str) -> str:
-    """
-    Simulates an NLP intent router.
-    In a full production application, this might use LangChain + OpenAI,
-    or a HuggingFace Zero-Shot classification pipeline.
-    """
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+logger = logging.getLogger(__name__)
+
+def detect_intent_regex(query: str) -> str:
     query = query.lower()
     
     if re.search(r'\b(weather|rain|temperature|forecast|climate)\b', query):
@@ -21,6 +26,40 @@ def detect_intent(query: str) -> str:
     else:
         return "general"
 
+def detect_intent(query: str) -> str:
+    """
+    NLP intent router using the Google Gemini API.
+    Falls back to regex-based routing if the API fails.
+    """
+    # Try local Ollama instance if available
+    try:
+        url = "http://localhost:11434/api/generate"
+        payload = {
+            "model": "llama3.2",  # Using the lightweight Llama 3.2 3B for blazing fast local text classification
+            "prompt": f"You are an intent router for an agriculture assistant. Categorize the user's query into exactly one of these intents: 'weather', 'disease', 'market', 'recommendation', 'schemes', 'general'. Only reply with exactly one of those words and nothing else. Query: {query}",
+            "stream": False,
+            "options": {
+                "temperature": 0.0,
+                "num_ctx": 512,
+                "num_predict": 10
+            }
+        }
+        response = requests.post(url, json=payload, timeout=60)
+        if response.status_code == 200:
+            result = response.json()
+            intent = result.get("response", "").strip().lower()
+            valid_intents = ["weather", "disease", "market", "recommendation", "schemes", "general"]
+            if intent in valid_intents:
+                return intent
+            else:
+                logger.warning(f"Ollama returned an unknown intent: {intent}")
+        else:
+            logger.warning(f"Ollama expected 200 OK, got {response.status_code}")
+    except Exception as e:
+        logger.warning(f"Could not connect to local Ollama API: {e}")
+            
+    # Fallback to regex if Ollama is not available or timed out
+    return detect_intent_regex(query)
 RESPONSES = {
     "weather": {
         "en": "Based on your location, there is a 60% chance of rain tomorrow. We advise withholding irrigation.",
@@ -56,10 +95,39 @@ RESPONSES = {
 
 def generate_response(intent: str, query: str, lang: str = "en") -> str:
     """
-    Routes the query to the appropriate mock handler based on intent.
+    Generates a dynamic conversational response using Ollama based on user intent.
+    Falls back to mock strings if Ollama fails.
     """
     safe_lang = lang if lang in ["en", "hi", "te"] else "en"
-    return RESPONSES.get(intent, RESPONSES["general"])[safe_lang]
+    fallback_resp = RESPONSES.get(intent, RESPONSES["general"])[safe_lang]
+
+    # Dynamically generate real answers for intents like market prices or general advice
+    if intent in ["market", "general", "recommendation", "disease", "weather", "schemes"]:
+        try:
+            url = "http://localhost:11434/api/generate"
+            language_map = {"en": "English", "hi": "Hindi", "te": "Telugu"}
+            lang_name = language_map.get(safe_lang, "English")
+
+            prompt = (
+                f"You are a helpful agricultural AI expert farmer assistant. "
+                f"The user has asked a question classified as '{intent}'. "
+                f"Answer their specific question directly, concisely, and accurately in {lang_name}. "
+                f"If they ask about an unknown market price (like tomatoes), estimate a realistic current price in INR.\n"
+                f"User: {query}"
+            )
+            
+            payload = {"model": "llama3.2", "prompt": prompt, "stream": False, "options": {"temperature": 0.6}}
+            response = requests.post(url, json=payload, timeout=60)
+            
+            if response.status_code == 200:
+                result = response.json()
+                llm_response = result.get("response", "").strip()
+                if llm_response:
+                    return llm_response
+        except Exception as e:
+            logger.warning(f"Could not generate dynamic Ollama response: {e}")
+
+    return fallback_resp
 
 def process_query(query: str, lang: str = "en") -> dict:
     intent = detect_intent(query)

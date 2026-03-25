@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 # 1. Connect to the default postgres database first to create the new one
@@ -12,9 +12,9 @@ try:
     with engine.connect() as conn:
         print("Creating 'agridb' database if it doesn't exist...")
         # Check if DB exists
-        result = conn.execute("SELECT 1 FROM pg_database WHERE datname='agridb'")
+        result = conn.execute(text("SELECT 1 FROM pg_database WHERE datname='agridb'"))
         if not result.fetchone():
-            conn.execute("CREATE DATABASE agridb")
+            conn.execute(text("CREATE DATABASE agridb"))
             print("Database 'agridb' created successfully!")
         else:
             print("Database 'agridb' already exists.")
@@ -26,7 +26,7 @@ except Exception as e:
 # 2. Now connect to the new agridb and create all the tables from our models
 print("Connecting to 'agridb' to create tables...")
 try:
-    from app.models.database import Base
+    from app.database import Base
     from app.models import User, QueryLog # Import models so Base metadata registers them
     
     AGRIDB_URL = "postgresql://postgres:postgres@localhost:5432/agridb"

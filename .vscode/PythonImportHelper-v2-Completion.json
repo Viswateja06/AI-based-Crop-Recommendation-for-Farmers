@@ -1,0 +1,679 @@
+[
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "ChatRequest",
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ChatResponse",
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "SoilData",
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "RecommendationResponse",
+        "importPath": "app.schemas",
+        "description": "app.schemas",
+        "isExtraImport": true,
+        "detail": "app.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "process_query",
+        "importPath": "app.agent.controller",
+        "description": "app.agent.controller",
+        "isExtraImport": true,
+        "detail": "app.agent.controller",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "predict_disease",
+        "importPath": "ml_models.disease_detection",
+        "description": "ml_models.disease_detection",
+        "isExtraImport": true,
+        "detail": "ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "joblib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "joblib",
+        "description": "joblib",
+        "detail": "joblib",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestClassifier",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "datasets",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "torch.optim",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.optim",
+        "description": "torch.optim",
+        "detail": "torch.optim",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "detect_intent",
+        "kind": 2,
+        "importPath": "backend.app.agent.controller",
+        "description": "backend.app.agent.controller",
+        "peekOfCode": "def detect_intent(query: str) -> str:\n    \"\"\"\n    Simulates an NLP intent router.\n    In a full production application, this might use LangChain + OpenAI,\n    or a HuggingFace Zero-Shot classification pipeline.\n    \"\"\"\n    query = query.lower()\n    if re.search(r'\\b(weather|rain|temperature|forecast|climate)\\b', query):\n        return \"weather\"\n    elif re.search(r'\\b(disease|pest|fungus|spray|treatment|sick|leaf|spot)\\b', query):",
+        "detail": "backend.app.agent.controller",
+        "documentation": {}
+    },
+    {
+        "label": "generate_response",
+        "kind": 2,
+        "importPath": "backend.app.agent.controller",
+        "description": "backend.app.agent.controller",
+        "peekOfCode": "def generate_response(intent: str, query: str, lang: str = \"en\") -> str:\n    \"\"\"\n    Routes the query to the appropriate mock handler based on intent.\n    \"\"\"\n    safe_lang = lang if lang in [\"en\", \"hi\", \"te\"] else \"en\"\n    return RESPONSES.get(intent, RESPONSES[\"general\"])[safe_lang]\ndef process_query(query: str, lang: str = \"en\") -> dict:\n    intent = detect_intent(query)\n    response = generate_response(intent, query, lang)\n    return {",
+        "detail": "backend.app.agent.controller",
+        "documentation": {}
+    },
+    {
+        "label": "process_query",
+        "kind": 2,
+        "importPath": "backend.app.agent.controller",
+        "description": "backend.app.agent.controller",
+        "peekOfCode": "def process_query(query: str, lang: str = \"en\") -> dict:\n    intent = detect_intent(query)\n    response = generate_response(intent, query, lang)\n    return {\n        \"intent\": intent,\n        \"query\": query,\n        \"response\": response\n    }",
+        "detail": "backend.app.agent.controller",
+        "documentation": {}
+    },
+    {
+        "label": "RESPONSES",
+        "kind": 5,
+        "importPath": "backend.app.agent.controller",
+        "description": "backend.app.agent.controller",
+        "peekOfCode": "RESPONSES = {\n    \"weather\": {\n        \"en\": \"Based on your location, there is a 60% chance of rain tomorrow. We advise withholding irrigation.\",\n        \"hi\": \"आपके स्थान के आधार पर, कल बारिश की 60% संभावना है। हम सिंचाई रोकने की सलाह देते हैं।\",\n        \"te\": \"మీ స్థానం ఆధారంగా, రేపు 60% వర్షం కురిసే అవకాశం ఉంది. మేము నీటిపారుదలని నిలపమని సలహా ఇస్తున్నాము.\"\n    },\n    \"disease\": {\n        \"en\": \"Please upload an image of your crop to our Disease Detection tool for an accurate diagnosis.\",\n        \"hi\": \"कृपया सटीक निदान के लिए हमारे रोग जांच उपकरण पर अपनी फसल की एक छवि अपलोड करें।\",\n        \"te\": \"దయచేసి ఖచ్చితమైన రోగ నిర్ధారణ కోసం మా వ్యాధి గుర్తింపు సాధనానికి మీ పంట చిత్రాన్ని అప్‌లోడ్ చేయండి.\"",
+        "detail": "backend.app.agent.controller",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.routers.chatbot",
+        "description": "backend.app.routers.chatbot",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/\", response_model=ChatResponse)\nasync def chat_with_bot(request: ChatRequest):\n    \"\"\"\n    Receives a farmer's query and routes it via the AI Agent Controller\n    \"\"\"\n    result = process_query(request.query, request.lang)\n    # Ideally, log the query and response to the DB here\n    return result",
+        "detail": "backend.app.routers.chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.routers.disease",
+        "description": "backend.app.routers.disease",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/detect\")\nasync def detect_disease(file: UploadFile = File(...)) -> Dict:\n    \"\"\"\n    Accepts an uploaded crop image, runs the leaf-check heuristic, and returns a disease prediction.\n    \"\"\"\n    # Read the file contents into memory\n    file_bytes = await file.read()\n    # Pass the bytes to the mock model\n    result = predict_disease(file_bytes)",
+        "detail": "backend.app.routers.disease",
+        "documentation": {}
+    },
+    {
+        "label": "get_fertilizer_suggestion",
+        "kind": 2,
+        "importPath": "backend.app.routers.recommendation",
+        "description": "backend.app.routers.recommendation",
+        "peekOfCode": "def get_fertilizer_suggestion(crop: str) -> str:\n    \"\"\"Mock fertilizer lookup.\"\"\"\n    fertilizers = {\n        \"rice\": \"Urea and DAP\",\n        \"wheat\": \"NPK 12:32:16\",\n        \"apple\": \"Ammonium Sulphate\",\n        \"grapes\": \"Potassium Nitrate\"\n    }\n    return fertilizers.get(crop.lower(), \"Standard NPK mix based on soil test.\")\n@router.post(\"/\", response_model=RecommendationResponse)",
+        "detail": "backend.app.routers.recommendation",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.routers.recommendation",
+        "description": "backend.app.routers.recommendation",
+        "peekOfCode": "router = APIRouter()\nMODEL_PATH = os.path.join(os.path.dirname(__file__), '../../ml_models/crop_rf_model.pkl')\ndef get_fertilizer_suggestion(crop: str) -> str:\n    \"\"\"Mock fertilizer lookup.\"\"\"\n    fertilizers = {\n        \"rice\": \"Urea and DAP\",\n        \"wheat\": \"NPK 12:32:16\",\n        \"apple\": \"Ammonium Sulphate\",\n        \"grapes\": \"Potassium Nitrate\"\n    }",
+        "detail": "backend.app.routers.recommendation",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_PATH",
+        "kind": 5,
+        "importPath": "backend.app.routers.recommendation",
+        "description": "backend.app.routers.recommendation",
+        "peekOfCode": "MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../ml_models/crop_rf_model.pkl')\ndef get_fertilizer_suggestion(crop: str) -> str:\n    \"\"\"Mock fertilizer lookup.\"\"\"\n    fertilizers = {\n        \"rice\": \"Urea and DAP\",\n        \"wheat\": \"NPK 12:32:16\",\n        \"apple\": \"Ammonium Sulphate\",\n        \"grapes\": \"Potassium Nitrate\"\n    }\n    return fertilizers.get(crop.lower(), \"Standard NPK mix based on soil test.\")",
+        "detail": "backend.app.routers.recommendation",
+        "documentation": {}
+    },
+    {
+        "label": "get_weather",
+        "kind": 2,
+        "importPath": "backend.app.routers.weather",
+        "description": "backend.app.routers.weather",
+        "peekOfCode": "def get_weather(city: str):\n    \"\"\"\n    Fetches real weather data using Open-Meteo and Nominatim free APIs.\n    \"\"\"\n    try:\n        # Step 1: Geocoding (City name to Lat/Lon)\n        geocode_url = f\"https://nominatim.openstreetmap.org/search?q={city}&format=json&limit=1\"\n        headers = {'User-Agent': 'GreenPulse/1.0'}\n        geo_response = requests.get(geocode_url, headers=headers, timeout=5)\n        geo_response.raise_for_status()",
+        "detail": "backend.app.routers.weather",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.routers.weather",
+        "description": "backend.app.routers.weather",
+        "peekOfCode": "router = APIRouter()\n@router.get(\"/\")\ndef get_weather(city: str):\n    \"\"\"\n    Fetches real weather data using Open-Meteo and Nominatim free APIs.\n    \"\"\"\n    try:\n        # Step 1: Geocoding (City name to Lat/Lon)\n        geocode_url = f\"https://nominatim.openstreetmap.org/search?q={city}&format=json&limit=1\"\n        headers = {'User-Agent': 'GreenPulse/1.0'}",
+        "detail": "backend.app.routers.weather",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "backend.app.database",
+        "description": "backend.app.database",
+        "peekOfCode": "def get_db():\n    if SessionLocal:\n        db = SessionLocal()\n        try:\n            yield db\n        finally:\n            db.close()\n    else:\n        yield None",
+        "detail": "backend.app.database",
+        "documentation": {}
+    },
+    {
+        "label": "SQLALCHEMY_DATABASE_URL",
+        "kind": 5,
+        "importPath": "backend.app.database",
+        "description": "backend.app.database",
+        "peekOfCode": "SQLALCHEMY_DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://postgres:postgres@localhost:5432/agridb\")\ntry:\n    engine = create_engine(SQLALCHEMY_DATABASE_URL)\n    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n    Base = declarative_base()\nexcept Exception as e:\n    print(f\"Failed to connect to the database: {e}\")\n    # In a real app we might want to fail loudly, but for setup we'll print\n    engine = None\n    SessionLocal = None",
+        "detail": "backend.app.database",
+        "documentation": {}
+    },
+    {
+        "label": "read_root",
+        "kind": 2,
+        "importPath": "backend.app.main",
+        "description": "backend.app.main",
+        "peekOfCode": "def read_root():\n    return {\"message\": \"Welcome to the AI-Based Farmer Query Support and Advisory System API\"}\napp.include_router(chatbot.router, prefix=\"/api/chat\", tags=[\"chatbot\"])\napp.include_router(disease.router, prefix=\"/api/disease\", tags=[\"disease\"])\napp.include_router(weather.router, prefix=\"/api/weather\", tags=[\"weather\"])\napp.include_router(recommendation.router, prefix=\"/api/recommend\", tags=[\"recommendation\"])",
+        "detail": "backend.app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.app.main",
+        "description": "backend.app.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"AI-Based Farmer Query Support and Advisory System\",\n    description=\"Backend API for Agricultural Advisory Platform\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=False,",
+        "detail": "backend.app.main",
+        "documentation": {}
+    },
+    {
+        "label": "train_model",
+        "kind": 2,
+        "importPath": "backend.ml_models.crop_recommendation",
+        "description": "backend.ml_models.crop_recommendation",
+        "peekOfCode": "def train_model():\n    print(\"Training Crop Recommendation Model...\")\n    data_path = '../data/crop_recommendation.csv'\n    if not os.path.exists(data_path):\n        print(f\"Error: Dataset not found at {data_path}. Please run generate_data.py first.\")\n        return\n    df = pd.read_csv(data_path)\n    features = df[['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']]\n    target = df['label']\n    X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)",
+        "detail": "backend.ml_models.crop_recommendation",
+        "documentation": {}
+    },
+    {
+        "label": "is_plant_leaf",
+        "kind": 2,
+        "importPath": "backend.ml_models.disease_detection",
+        "description": "backend.ml_models.disease_detection",
+        "peekOfCode": "def is_plant_leaf(image_bytes: bytes) -> bool:\n    \"\"\"\n    Academic Heuristic: Checks if the image has a significant amount of 'green' pixels.\n    This simulates a preliminary check to reject random human/cat photos.\n    \"\"\"\n    try:\n        img = Image.open(io.BytesIO(image_bytes))\n        img = img.resize((100, 100))\n        img = img.convert('RGB')\n        green_pixel_count = 0",
+        "detail": "backend.ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "predict_disease",
+        "kind": 2,
+        "importPath": "backend.ml_models.disease_detection",
+        "description": "backend.ml_models.disease_detection",
+        "peekOfCode": "def predict_disease(image_bytes: bytes):\n    \"\"\"\n    Validates the image and uses a trained PyTorch CNN for prediction.\n    If the model isn't trained yet, it warns the user and falls back.\n    \"\"\"\n    if not is_plant_leaf(image_bytes):\n        return {\n            \"name\": \"Invalid Image\",\n            \"treatment\": \"Please upload a clear image of a plant leaf. The current image does not appear to be a crop.\",\n            \"pesticide\": \"N/A\"",
+        "detail": "backend.ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "DISEASES",
+        "kind": 5,
+        "importPath": "backend.ml_models.disease_detection",
+        "description": "backend.ml_models.disease_detection",
+        "peekOfCode": "DISEASES = [\n    {\"name\": \"Apple Scab\", \"treatment\": \"Apply fungicides containing captan, mancozeb, or myclobutanil.\", \"pesticide\": \"Mancozeb 75% WP\"},\n    {\"name\": \"Corn Common Rust\", \"treatment\": \"Plant resistant hybrids. Apply foliar fungicide if severe.\", \"pesticide\": \"Azoxystrobin 25% SC\"},\n    {\"name\": \"Grape Black Rot\", \"treatment\": \"Remove infected mummies. Apply protective fungicides.\", \"pesticide\": \"Myclobutanil 10% WP\"},\n    {\"name\": \"Potato Early Blight\", \"treatment\": \"Ensure adequate nitrogen. Apply preventative fungicides.\", \"pesticide\": \"Chlorothalonil 75% WP\"},\n    {\"name\": \"Tomato Late Blight\", \"treatment\": \"Destroy infected plants immediately. Apply copper-based fungicides.\", \"pesticide\": \"Copper Oxychloride 50% WP\"},\n    {\"name\": \"Healthy Crop\", \"treatment\": \"Maintain current agricultural practices. Ensure proper irrigation and nutrition.\", \"pesticide\": \"None required\"}\n]\n# Path to the PyTorch weights (generated by train_disease_model.py)\nMODEL_PATH = os.path.join(os.path.dirname(__file__), 'plant_disease_model.pth')",
+        "detail": "backend.ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_PATH",
+        "kind": 5,
+        "importPath": "backend.ml_models.disease_detection",
+        "description": "backend.ml_models.disease_detection",
+        "peekOfCode": "MODEL_PATH = os.path.join(os.path.dirname(__file__), 'plant_disease_model.pth')\nCLASSES_PATH = os.path.join(os.path.dirname(__file__), 'disease_classes.txt')\ndef is_plant_leaf(image_bytes: bytes) -> bool:\n    \"\"\"\n    Academic Heuristic: Checks if the image has a significant amount of 'green' pixels.\n    This simulates a preliminary check to reject random human/cat photos.\n    \"\"\"\n    try:\n        img = Image.open(io.BytesIO(image_bytes))\n        img = img.resize((100, 100))",
+        "detail": "backend.ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "CLASSES_PATH",
+        "kind": 5,
+        "importPath": "backend.ml_models.disease_detection",
+        "description": "backend.ml_models.disease_detection",
+        "peekOfCode": "CLASSES_PATH = os.path.join(os.path.dirname(__file__), 'disease_classes.txt')\ndef is_plant_leaf(image_bytes: bytes) -> bool:\n    \"\"\"\n    Academic Heuristic: Checks if the image has a significant amount of 'green' pixels.\n    This simulates a preliminary check to reject random human/cat photos.\n    \"\"\"\n    try:\n        img = Image.open(io.BytesIO(image_bytes))\n        img = img.resize((100, 100))\n        img = img.convert('RGB')",
+        "detail": "backend.ml_models.disease_detection",
+        "documentation": {}
+    },
+    {
+        "label": "generate_crop_data",
+        "kind": 2,
+        "importPath": "backend.ml_models.generate_data",
+        "description": "backend.ml_models.generate_data",
+        "peekOfCode": "def generate_crop_data():\n    \"\"\"Generates a synthetic dataset for Crop Recommendation.\"\"\"\n    print(\"Generating synthetic crop recommendation dataset...\")\n    np.random.seed(42)\n    # Simplified list of crops\n    crops = ['rice', 'maize', 'chickpea', 'kidneybeans', 'pigeonpeas',\n             'mothbeans', 'mungbean', 'blackgram', 'lentil', 'pomegranate',\n             'banana', 'mango', 'grapes', 'watermelon', 'muskmelon', 'apple',\n             'orange', 'papaya', 'coconut', 'cotton', 'jute', 'coffee']\n    data = []",
+        "detail": "backend.ml_models.generate_data",
+        "documentation": {}
+    },
+    {
+        "label": "train_model",
+        "kind": 2,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "def train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")\n        return\n    # 1. Define Image Transformations\n    # PlantVillage images are 256x256, we resize them to 224x224 for ResNet\n    data_transforms = transforms.Compose([\n        transforms.Resize((224, 224)),",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_DIR",
+        "kind": 5,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "DATA_DIR = '../data/PlantVillage'\nMODEL_SAVE_PATH = 'plant_disease_model.pth'\nBATCH_SIZE = 32\nEPOCHS = 5\nLEARNING_RATE = 0.001\ndef train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_SAVE_PATH",
+        "kind": 5,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "MODEL_SAVE_PATH = 'plant_disease_model.pth'\nBATCH_SIZE = 32\nEPOCHS = 5\nLEARNING_RATE = 0.001\ndef train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")\n        return",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "BATCH_SIZE",
+        "kind": 5,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "BATCH_SIZE = 32\nEPOCHS = 5\nLEARNING_RATE = 0.001\ndef train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")\n        return\n    # 1. Define Image Transformations",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "EPOCHS",
+        "kind": 5,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "EPOCHS = 5\nLEARNING_RATE = 0.001\ndef train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")\n        return\n    # 1. Define Image Transformations\n    # PlantVillage images are 256x256, we resize them to 224x224 for ResNet",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "LEARNING_RATE",
+        "kind": 5,
+        "importPath": "backend.ml_models.train_disease_model",
+        "description": "backend.ml_models.train_disease_model",
+        "peekOfCode": "LEARNING_RATE = 0.001\ndef train_model():\n    print(\"Checking for dataset...\")\n    if not os.path.exists(DATA_DIR):\n        print(f\"Error: Dataset not found at {DATA_DIR}.\")\n        print(\"Please download the PlantVillage dataset from Kaggle and extract it there.\")\n        return\n    # 1. Define Image Transformations\n    # PlantVillage images are 256x256, we resize them to 224x224 for ResNet\n    data_transforms = transforms.Compose([",
+        "detail": "backend.ml_models.train_disease_model",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_DB_URL",
+        "kind": 5,
+        "importPath": "backend.init_db",
+        "description": "backend.init_db",
+        "peekOfCode": "DEFAULT_DB_URL = \"postgresql://postgres:postgres@localhost:5432/postgres\"\nprint(\"Connecting to PostgreSQL...\")\ntry:\n    # We must use isolation_level=\"AUTOCOMMIT\" to run CREATE DATABASE\n    engine = create_engine(DEFAULT_DB_URL, isolation_level=\"AUTOCOMMIT\")\n    with engine.connect() as conn:\n        print(\"Creating 'agridb' database if it doesn't exist...\")\n        # Check if DB exists\n        result = conn.execute(text(\"SELECT 1 FROM pg_database WHERE datname='agridb'\"))\n        if not result.fetchone():",
+        "detail": "backend.init_db",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0\n    for _ in value:\n        keys.append(i)\n        i += 1\n    return keys",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "frontend.node_modules.flatted.python.flatted",
+        "description": "frontend.node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "frontend.node_modules.flatted.python.flatted",
+        "documentation": {}
+    }
+]

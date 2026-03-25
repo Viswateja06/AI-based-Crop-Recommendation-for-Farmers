@@ -1,35 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { chatWithBot } from '../services/api';
 import { Send, Bot, User } from 'lucide-react';
 
+const TypewriterText = ({ text, isTyping, onTyping }) => {
+  const [displayedText, setDisplayedText] = useState(isTyping ? '' : text);
+  
+  useEffect(() => {
+    if (!isTyping) {
+      setDisplayedText(text);
+      return;
+    }
+    let i = 0;
+    const words = text.split(' ');
+    const interval = setInterval(() => {
+      setDisplayedText(words.slice(0, i + 1).join(' '));
+      i++;
+      if (onTyping) onTyping();
+      if (i >= words.length) {
+        clearInterval(interval);
+        if (onTyping) onTyping();
+      }
+    }, 100); // 100ms per word
+    return () => clearInterval(interval);
+  }, [text, isTyping]);
+
+  return <span>{displayedText}</span>;
+};
+
 const Chatbot = ({ t, language }) => {
   const [messages, setMessages] = useState([
-    { text: t.chatbotWelcome || "Hello! I am the AI Farmer Advisory Bot. How can I help you today?", isBot: true }
+    { text: t.chatbotWelcome || "Hello! I am the AI Farmer Advisory Bot. How can I help you today?", isBot: true, isTyping: false }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isLoading]);
 
   const handleSend = async (e) => {
     e?.preventDefault();
     if (!input.trim()) return;
 
+    // Remove typing status from older messages
+    setMessages(prev => prev.map(m => ({ ...m, isTyping: false })));
+
     const userMessage = input;
-    setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
+    setMessages(prev => [...prev, { text: userMessage, isBot: false, isTyping: false }]);
     setInput('');
     setIsLoading(true);
 
     try {
       const data = await chatWithBot(userMessage, language);
-      setMessages(prev => [...prev, { text: data.response, isBot: true }]);
+      setMessages(prev => [...prev, { text: data.response, isBot: true, isTyping: true }]);
     } catch (error) {
-      setMessages(prev => [...prev, { text: "Error connecting to the advisory system.", isBot: true }]);
+      setMessages(prev => [...prev, { text: "Error connecting to the advisory system.", isBot: true, isTyping: true }]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col h-[600px] w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-green-100">
+    <div className="flex flex-col h-[calc(100vh-240px)] min-h-[400px] w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-green-100">
       <div className="bg-green-600 p-4 text-white flex items-center shadow-md">
         <Bot className="mr-2" />
         <h2 className="text-xl font-bold">{t.chatbotTitle}</h2>
@@ -43,7 +80,11 @@ const Chatbot = ({ t, language }) => {
             }`}>
               {msg.isBot && <Bot className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-green-600" />}
               {!msg.isBot && <User className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-green-200" />}
-              <p className="text-sm md:text-base">{msg.text}</p>
+              {msg.isBot ? (
+                <p className="text-sm md:text-base whitespace-pre-wrap"><TypewriterText text={msg.text} isTyping={msg.isTyping} onTyping={scrollToBottom} /></p>
+              ) : (
+                <p className="text-sm md:text-base whitespace-pre-wrap">{msg.text}</p>
+              )}
             </div>
           </div>
         ))}
@@ -56,6 +97,7 @@ const Chatbot = ({ t, language }) => {
              </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       <form onSubmit={handleSend} className="p-4 bg-white border-t border-gray-200 flex items-center space-x-2">
