@@ -45,7 +45,7 @@ const CropRecommendation = ({ t }) => {
 
       <div className="grid md:grid-cols-2 gap-10">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Nitrogen (N) <br/><span className="text-xs text-gray-400">0 - 140</span></label>
               <input type="number" name="N" value={formData.N} onChange={handleChange} min="0" max="140" placeholder="e.g. 90" required className="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" />
@@ -60,7 +60,7 @@ const CropRecommendation = ({ t }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center"><ThermometerSun size={16} className="mr-1 text-orange-500"/> Temp (°C) <span className="ml-1 text-xs text-gray-400">8 - 45</span></label>
               <input type="number" step="0.1" name="temperature" value={formData.temperature} onChange={handleChange} min="8" max="45" placeholder="e.g. 20.8" required className="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" />
@@ -71,7 +71,7 @@ const CropRecommendation = ({ t }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Soil pH <span className="ml-1 text-xs text-gray-400">3.5 - 9.9</span></label>
               <input type="number" step="0.1" name="ph" value={formData.ph} onChange={handleChange} min="3.5" max="9.9" placeholder="e.g. 6.5" required className="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" />

@@ -41,7 +41,7 @@ const DiseaseDetector = ({ t }) => {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-green-300 rounded-xl bg-green-50 hover:bg-green-100 transition-colors">
           {preview ? (
-            <img src={preview} alt="Crop Preview" className="max-h-64 rounded-lg object-cover mb-4" />
+            <img src={preview} alt="Crop Preview" className="w-full max-h-64 rounded-lg object-contain mb-4" />
           ) : (
             <div className="text-center py-12">
               <UploadCloud className="mx-auto h-12 w-12 text-green-400 mb-4" />

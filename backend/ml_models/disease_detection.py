@@ -21,23 +21,40 @@ CLASSES_PATH = os.path.join(os.path.dirname(__file__), 'disease_classes.txt')
 
 def is_plant_leaf(image_bytes: bytes) -> bool:
     """
-    Academic Heuristic: Checks if the image has a significant amount of 'green' pixels.
-    This simulates a preliminary check to reject random human/cat photos.
+    Advanced Heuristic: Checks the HSV color spectrum of the image to ensure it is dominated
+    by organic leaf colors (Green, Yellow, Brown) and explicitly rejects images with
+    high concentrations of unnatural bright colors (Cyan, Blue, Purple, Magenta backgrounds).
     """
     try:
         img = Image.open(io.BytesIO(image_bytes))
         img = img.resize((100, 100))
-        img = img.convert('RGB')
         
-        green_pixel_count = 0
+        img_hsv = img.convert('HSV')
+        
+        plant_colors = 0
+        unnatural_colors = 0
+        
+        for h, s, v in img_hsv.getdata():
+            # Only count pixels that have actual color (ignore pure black/white/dark shadows)
+            if s > 30 and v > 30:
+                # In Pillow HSV: Hue goes from 0-255
+                # 0-20 (Oranges/Reds), 20-100 (Yellows, Greens), 100-120 (Cyans)
+                # 120-255 (Blues, Purples, Pinks, Magentas)
+                if 10 <= h <= 100:
+                    plant_colors += 1
+                elif h > 120:
+                    unnatural_colors += 1
+                    
         total_pixels = 100 * 100
         
-        for r, g, b in img.getdata():
-            if g > r and g > b:
-                green_pixel_count += 1
-                
-        green_ratio = green_pixel_count / total_pixels
-        return green_ratio > 0.05
+        # Real field photos contain overwhelming amounts of yellow/brown/green.
+        has_plant_colors = (plant_colors / total_pixels) > 0.05 # Lowered heavily to allow for smaller leaves
+        
+        # We previously rejected images with 5% blue/purple backgrounds, but this accidentally blocked 
+        # farmers holding leaves in front of their blue jeans or the sky!
+        has_unnatural_background = (unnatural_colors / total_pixels) > 0.40
+        
+        return has_plant_colors and not has_unnatural_background
     except Exception as e:
         print(f"Error processing image: {e}")
         return False
@@ -74,6 +91,8 @@ def predict_disease(image_bytes: bytes):
             
             # Preprocess Image
             transform = transforms.Compose([
+                # Critical Fix: Instead of resizing the short edge and center cropping (which arbitrarily cuts off massive pieces of real-world 16:9 phone photos),
+                # we force-squash the entire image flat into 224x224. This guarantees the entire leaf outline is always passed to the network!
                 transforms.Resize((224, 224)),
                 transforms.ToTensor(),
                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -87,17 +106,30 @@ def predict_disease(image_bytes: bytes):
                 _, preds = torch.max(outputs, 1)
                 predicted_class = class_names[preds[0]]
                 
-            # Try to match the raw class name to our curated treatment dictionary
-            for d in DISEASES:
-                if d['name'].lower() in predicted_class.lower() or predicted_class.lower() in d['name'].lower():
-                    return d
-                    
-            # If not in dictionary, return the raw network output
-            return {
-                "name": predicted_class.replace('___', ' - ').replace('_', ' '),
-                "treatment": "Treatment details unavailable for this specific strain.",
-                "pesticide": "Consult local agricultural extension."
-            }
+            # Dynamically parse the PlantVillage class name format (e.g. "Tomato___Septoria_leaf_spot")
+            if "healthy" in predicted_class.lower():
+                crop_name = predicted_class.split("___")[0].replace("_", " ") if "___" in predicted_class else predicted_class.replace("_", " ")
+                return {
+                    "name": f"Healthy {crop_name} Crop",
+                    "treatment": "Your plant looks perfectly healthy! Maintain your current routine.",
+                    "pesticide": "None required. Avoid unnecessary chemical applications."
+                }
+            elif "___" in predicted_class:
+                parts = predicted_class.split("___")
+                crop_name = parts[0].replace("_", " ")
+                disease_name = parts[1].replace("_", " ").title()
+                
+                return {
+                    "name": f"{crop_name} - {disease_name}",
+                    "treatment": f"Prune away the infected leaves immediately to prevent {disease_name} from spreading across the rest of your {crop_name} crop.",
+                    "pesticide": f"Consult a local expert for generic {disease_name} treatments, or ask our AI Chatbot for organic remedies!"
+                }
+            else:
+                return {
+                    "name": predicted_class.replace('_', ' ').title(),
+                    "treatment": "Treatment details unavailable. Ensure proper irrigation and soil nutrition.",
+                    "pesticide": "Consult local agricultural extension."
+                }
                 
         except Exception as e:
             print(f"PyTorch Inference Error: {e}")

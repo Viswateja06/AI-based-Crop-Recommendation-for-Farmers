@@ -66,7 +66,7 @@ const Chatbot = ({ t, language }) => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-240px)] min-h-[400px] w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-green-100">
+    <div className="flex flex-col h-[80vh] sm:h-[calc(100vh-240px)] min-h-[400px] w-full max-w-2xl mx-auto bg-white sm:rounded-xl shadow-lg overflow-hidden border border-green-100">
       <div className="bg-green-600 p-4 text-white flex items-center shadow-md">
         <Bot className="mr-2" />
         <h2 className="text-xl font-bold">{t.chatbotTitle}</h2>
@@ -75,7 +75,7 @@ const Chatbot = ({ t, language }) => {
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
         {messages.map((msg, index) => (
           <div key={index} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
-            <div className={`flex max-w-[80%] rounded-2xl p-3 ${
+            <div className={`flex max-w-[95%] sm:max-w-[80%] rounded-2xl p-3 ${
               msg.isBot ? 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm' : 'bg-green-500 text-white rounded-tr-none shadow-md'
             }`}>
               {msg.isBot && <Bot className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-green-600" />}

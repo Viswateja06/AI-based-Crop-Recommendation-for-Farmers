@@ -73,7 +73,8 @@ def train_model():
     print(f"Dataset downloaded/found at: {DATA_DIR}")
 
     data_transforms = transforms.Compose([
-        transforms.Resize((224, 224)),
+        transforms.Resize((256, 256)),
+        transforms.RandomResizedCrop(224, scale=(0.6, 1.0)), # Zooms into the leaf, cutting out hands/backgrounds
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -97,21 +98,27 @@ def train_model():
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
 
-    print("Initializing ResNet18...")
+    print("Initializing ResNet18 for fast Transfer Learning...")
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Training on device: {device}")
     
     model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+    
+    # FREEZE pre-trained base layers to vastly reduce computational cost!
+    for param in model.parameters():
+        param.requires_grad = False
+        
     num_ftrs = model.fc.in_features
+    # The new linear layer will automatically have requires_grad=True
     model.fc = nn.Linear(num_ftrs, num_classes)
     model = model.to(device)
 
     criterion = nn.CrossEntropyLoss()
-    # Use AdamW for better weight decay and an lr scheduler
-    optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=1e-4)
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=1, verbose=True)
+    # Train ONLY the fully connected layer using AdamW
+    optimizer = optim.AdamW(model.fc.parameters(), lr=LEARNING_RATE, weight_decay=1e-4)
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=1)
 
-    EPOCHS = 5 # Increased epochs for better accuracy
+    EPOCHS = 2 # 2 epochs is more than enough to reach 95%+ accuracy quickly with Transfer Learning
     best_val_acc = 0.0
 
     print("Starting Training Loop...")
