@@ -105,7 +105,7 @@ const Chatbot = ({ t, language }) => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask a question..."
+          placeholder={t.askQuestion}
           className="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
         />
         <button

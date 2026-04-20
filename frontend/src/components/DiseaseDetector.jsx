@@ -45,7 +45,7 @@ const DiseaseDetector = ({ t }) => {
           ) : (
             <div className="text-center py-12">
               <UploadCloud className="mx-auto h-12 w-12 text-green-400 mb-4" />
-              <p className="text-sm text-gray-600">Click to upload a leaf image</p>
+              <p className="text-sm text-gray-600">{t.uploadLeafImage}</p>
             </div>
           )}
           
@@ -68,19 +68,19 @@ const DiseaseDetector = ({ t }) => {
             disabled={!selectedFile || isAnalyzing}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-6"
           >
-            {isAnalyzing ? "Analyzing Request..." : "Detect Disease"}
+            {isAnalyzing ? t.analyzingRequest : t.detectDisease}
           </button>
 
           {result && !result.error && (
             <div className="bg-white border border-green-200 rounded-lg p-5 shadow-sm">
               <h3 className="text-lg font-bold text-green-800 mb-4 flex items-center">
                 <CheckCircle className="mr-2 text-green-500" size={20} />
-                Analysis Complete
+                {t.analysisComplete}
               </h3>
               <div className="space-y-3 text-sm">
-                <p><span className="font-semibold text-gray-700">Condition:</span> <span className="text-red-600 font-medium">{result.disease}</span></p>
-                <p><span className="font-semibold text-gray-700">Treatment:</span> {result.treatment}</p>
-                <p><span className="font-semibold text-gray-700">Suggested Pesticide:</span> {result.pesticide}</p>
+                <p><span className="font-semibold text-gray-700">{t.condition}</span> <span className="text-red-600 font-medium">{result.disease}</span></p>
+                <p><span className="font-semibold text-gray-700">{t.treatment}</span> {result.treatment}</p>
+                <p><span className="font-semibold text-gray-700">{t.suggestedPesticide}</span> {result.pesticide}</p>
               </div>
             </div>
           )}

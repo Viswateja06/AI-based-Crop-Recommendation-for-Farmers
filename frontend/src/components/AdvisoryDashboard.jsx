@@ -132,7 +132,7 @@ const AdvisoryDashboard = ({ t }) => {
                    <Search size={16} className="absolute left-2 top-2.5 text-gray-400" />
                    <input
                      type="text"
-                     placeholder="Search district/state..."
+                     placeholder={t.searchDistrict}
                      value={searchTerm}
                      onChange={(e) => setSearchTerm(e.target.value)}
                      className="w-full pl-8 pr-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
@@ -152,7 +152,7 @@ const AdvisoryDashboard = ({ t }) => {
                     </li>
                   ))
                 ) : (
-                  <li className="px-3 py-2 text-sm text-gray-500 text-center">No locations found</li>
+                  <li className="px-3 py-2 text-sm text-gray-500 text-center">{t.noLocationsFound}</li>
                 )}
               </ul>
             </div>

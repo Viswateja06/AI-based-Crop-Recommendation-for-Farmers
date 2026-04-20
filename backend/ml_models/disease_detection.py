@@ -19,6 +19,10 @@ DISEASES = [
 MODEL_PATH = os.path.join(os.path.dirname(__file__), 'plant_disease_model.pth')
 CLASSES_PATH = os.path.join(os.path.dirname(__file__), 'disease_classes.txt')
 
+# ── Module-level cache so the model loads from disk only once ──
+_cached_model = None
+_cached_classes = None
+
 def is_plant_leaf(image_bytes: bytes) -> bool:
     """
     Advanced Heuristic: Checks the HSV color spectrum of the image to ensure it is dominated
@@ -74,63 +78,71 @@ def predict_disease(image_bytes: bytes):
     # Attempt to use real inference if the model has been trained
     if os.path.exists(MODEL_PATH) and os.path.exists(CLASSES_PATH):
         try:
-            with open(CLASSES_PATH, 'r') as f:
-                class_names = [line.strip() for line in f.readlines()]
-                
-            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-            
-            # Load Architecture
-            model = models.resnet18()
-            num_ftrs = model.fc.in_features
-            model.fc = nn.Linear(num_ftrs, len(class_names))
-            
-            # Load Weights
-            model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
-            model.to(device)
-            model.eval()
-            
-            # Preprocess Image
+            global _cached_model, _cached_classes
+
+            # Load model & classes only once, then reuse from cache
+            if _cached_model is None or _cached_classes is None:
+                with open(CLASSES_PATH, 'r') as f:
+                    _cached_classes = [line.strip() for line in f if line.strip()]
+
+                device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+                model = models.resnet18()
+                num_ftrs = model.fc.in_features
+                model.fc = nn.Linear(num_ftrs, len(_cached_classes))
+                model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+                model.to(device)
+                model.eval()
+                _cached_model = model
+                print(f"Disease model loaded: {len(_cached_classes)} classes on {device}")
+
+            class_names = _cached_classes
+            model = _cached_model
+            device = next(model.parameters()).device
+
+            # Preprocess Image — force-squash to 224x224 so the full leaf is always visible
             transform = transforms.Compose([
-                # Critical Fix: Instead of resizing the short edge and center cropping (which arbitrarily cuts off massive pieces of real-world 16:9 phone photos),
-                # we force-squash the entire image flat into 224x224. This guarantees the entire leaf outline is always passed to the network!
                 transforms.Resize((224, 224)),
                 transforms.ToTensor(),
                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
             ])
             img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
             input_tensor = transform(img).unsqueeze(0).to(device)
-            
+
             # Inference
             with torch.no_grad():
                 outputs = model(input_tensor)
                 _, preds = torch.max(outputs, 1)
                 predicted_class = class_names[preds[0]]
-                
-            # Dynamically parse the PlantVillage class name format (e.g. "Tomato___Septoria_leaf_spot")
-            if "healthy" in predicted_class.lower():
-                crop_name = predicted_class.split("___")[0].replace("_", " ") if "___" in predicted_class else predicted_class.replace("_", " ")
+
+            # ── Parse class name ──────────────────────────────────────────
+            # disease_classes.txt uses space-separated format: "Crop Disease"
+            # e.g. "Apple Apple Scab", "Tomato Late Blight", "Potato Healthy"
+            # The dataset folder names use PlantVillage "Crop___Disease" format
+            # so we handle BOTH formats here.
+            if "___" in predicted_class:
+                # PlantVillage folder-name format: "Apple___Apple_Scab"
+                parts = predicted_class.split("___")
+                crop_name = parts[0].replace("_", " ").title()
+                disease_name = parts[1].replace("_", " ").title()
+            else:
+                # Space-separated format from training: "Apple Apple Scab"
+                tokens = predicted_class.split()
+                crop_name = tokens[0].title() if tokens else predicted_class
+                disease_name = " ".join(tokens[1:]).title() if len(tokens) > 1 else ""
+
+            if "healthy" in disease_name.lower() or "healthy" in predicted_class.lower():
                 return {
                     "name": f"Healthy {crop_name} Crop",
                     "treatment": "Your plant looks perfectly healthy! Maintain your current routine.",
                     "pesticide": "None required. Avoid unnecessary chemical applications."
                 }
-            elif "___" in predicted_class:
-                parts = predicted_class.split("___")
-                crop_name = parts[0].replace("_", " ")
-                disease_name = parts[1].replace("_", " ").title()
-                
+            else:
                 return {
                     "name": f"{crop_name} - {disease_name}",
                     "treatment": f"Prune away the infected leaves immediately to prevent {disease_name} from spreading across the rest of your {crop_name} crop.",
-                    "pesticide": f"Consult a local expert for generic {disease_name} treatments, or ask our AI Chatbot for organic remedies!"
+                    "pesticide": f"Consult a local expert for {disease_name} treatments, or ask our AI Chatbot for organic remedies!"
                 }
-            else:
-                return {
-                    "name": predicted_class.replace('_', ' ').title(),
-                    "treatment": "Treatment details unavailable. Ensure proper irrigation and soil nutrition.",
-                    "pesticide": "Consult local agricultural extension."
-                }
-                
+
         except Exception as e:
             print(f"PyTorch Inference Error: {e}")
             pass

@@ -67,10 +67,22 @@ class PlantVillageKagglehub(torch.utils.data.Dataset):
         return img, target
 
 def train_model():
-    print("Downloading/Locating dataset via kagglehub...")
-    import kagglehub
-    DATA_DIR = kagglehub.dataset_download('tushar5harma/plant-village-dataset-updated')
-    print(f"Dataset downloaded/found at: {DATA_DIR}")
+    # ---------------------------------------------------------------
+    # OPTION A: Set this to your manually downloaded & extracted
+    # PlantVillage dataset folder to skip the Kaggle download.
+    # Example: LOCAL_DATA_DIR = r"C:\Users\User\Desktop\PlantVillage"
+    # Leave as None to download automatically via kagglehub.
+    # ---------------------------------------------------------------
+    LOCAL_DATA_DIR = r"C:\Users\User\Downloads\plant-village-dataset-updated"
+
+    if LOCAL_DATA_DIR and os.path.isdir(LOCAL_DATA_DIR):
+        DATA_DIR = LOCAL_DATA_DIR
+        print(f"Using local dataset at: {DATA_DIR}")
+    else:
+        print("Downloading/Locating dataset via kagglehub...")
+        import kagglehub
+        DATA_DIR = kagglehub.dataset_download('tushar5harma/plant-village-dataset-updated')
+        print(f"Dataset downloaded/found at: {DATA_DIR}")
 
     data_transforms = transforms.Compose([
         transforms.Resize((256, 256)),
