@@ -6,8 +6,9 @@ from app.schemas import SoilData, RecommendationResponse
 
 router = APIRouter()
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../ml_models/crop_rf_model.pkl')
-
+MODEL_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../../../ml_models/crop_rf_model.pkl")
+)
 def get_fertilizer_suggestion(crop: str) -> str:
     """Mock fertilizer lookup."""
     fertilizers = {
