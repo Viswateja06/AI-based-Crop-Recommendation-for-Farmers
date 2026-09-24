@@ -12,38 +12,38 @@ MODEL_PATH = os.path.join(
     '../../ml_models/crop_rf_model.pkl'
 )
 
-# Load model once when the application starts
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(
-        f"ML model not found at: {MODEL_PATH}"
-    )
-
-model = joblib.load(MODEL_PATH)
-
 
 def get_fertilizer_suggestion(crop: str) -> str:
-    """Return fertilizer suggestion based on recommended crop."""
-
-    fertilizers = {
-        "rice": "Urea and DAP",
-        "wheat": "NPK 12:32:16",
-        "apple": "Ammonium Sulphate",
-        "grapes": "Potassium Nitrate"
-    }
-
-    return fertilizers.get(
-        crop.lower(),
-        "Standard NPK mix based on soil test."
-    )
+    # your existing code
+    ...
 
 
 @router.post("/", response_model=RecommendationResponse)
 async def recommend_crop(data: SoilData):
-    """
-    Accepts soil and environmental data,
-    returning a crop recommendation.
-    """
 
+    if not os.path.exists(MODEL_PATH):
+        raise HTTPException(
+            status_code=500,
+            detail="ML Model not found."
+        )
+
+    # 👇 CHANGE THIS PART
+    try:
+        print(f"Loading model from: {MODEL_PATH}")
+        print(f"Model exists: {os.path.exists(MODEL_PATH)}")
+
+        model = joblib.load(MODEL_PATH)
+
+        print("Crop recommendation model loaded successfully.")
+
+    except Exception as e:
+        print(f"MODEL LOAD ERROR: {type(e).__name__}: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to load crop recommendation model: {str(e)}"
+        )
+
+    # keep everything below unchanged
     input_data = pd.DataFrame([{
         "N": data.N,
         "P": data.P,
